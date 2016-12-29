@@ -14,19 +14,18 @@ namespace block
         float time;
         float fallTime;
 
-        Ray ray;
         LayerMask floor;
         bool hitFloor;
+        float rayDistance;
         // Use this for initialization
         void Start()
         {
             time = 0.0f;
             fallTime = 0.7f;
 
-            ray = new Ray(transform.position,
-                                    transform.position - transform.up);
             floor = LayerMask.GetMask("Floor");
             hitFloor = false;
+            rayDistance = 2.0f;
         }
 
         // Update is called once per frame
@@ -36,9 +35,6 @@ namespace block
 
             if (hitFloor) return;
 
-            Debug.DrawLine(transform.position,
-                           transform.position - transform.up * 0.5f,
-                           Color.red);
             FallBlock();
             MoveBlock();
         }
@@ -80,17 +76,13 @@ namespace block
                                              transform.position.z);
             time = 0.0f;
 
-            if (isHitFloor())
-            {
-                Debug.Log("hoge");
-                hitFloor = true;
-
-            }
         }
 
-        private bool isHitFloor()
+        void OnCollisionEnter(Collision coll)
         {
-            return Physics.Raycast(ray,0.5f,floor);
+            if (hitFloor) return;
+            Debug.Log(coll.gameObject.ToString());
+            hitFloor = true;
         }
     }
 }
