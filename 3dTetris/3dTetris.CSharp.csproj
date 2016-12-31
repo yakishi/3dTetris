@@ -66,9 +66,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Block.cs" />
+    <Compile Include="Assets\Scripts\Block\Block.cs" />
+    <Compile Include="Assets\Scripts\Block\BlockFactory.cs" />
     <Compile Include="Assets\Scripts\Floor.cs" />
     <Compile Include="Assets\Scripts\MyInput.cs" />
+    <Compile Include="Assets\Scripts\Stage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

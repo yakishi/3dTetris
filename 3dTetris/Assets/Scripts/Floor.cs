@@ -4,17 +4,25 @@ using System.Collections;
 public class Floor : MonoBehaviour {
 
     protected int sceneTask;
+    [SerializeField]
+    private int blockWQuantity;    //x座標のマス目の数
+    private int blockDQuantity;    //z座標のマス目の数
 
-	// Use this for initialization
-	void Start () {
+    public int getWQuantity { get { return blockWQuantity; } }
+    public int getDQuantity { get { return blockWQuantity; } }
+
+    // Use this for initialization
+    void Start () {
+        blockDQuantity = blockWQuantity;
+
         //配置するプレハブの読み込み
         GameObject prefab = (GameObject)Resources.Load("Objects/Floor/Tile");
         //配置元のオブジェクト設定
         GameObject floorObject = GameObject.FindWithTag("Floor");
         //タイル配置
-        for(int i = 0; i < 7; i++)
+        for(int i = 0; i < blockWQuantity; i++)
         {
-            for(int j = 0; j < 7; j++)
+            for(int j = 0; j < blockDQuantity; j++)
             {
                 Vector3 tile_pos = new Vector3(
                     0 + prefab.transform.localScale.x * i,
