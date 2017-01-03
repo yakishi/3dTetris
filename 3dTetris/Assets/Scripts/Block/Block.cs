@@ -5,7 +5,8 @@ namespace block
 {
     public class Block : MonoBehaviour
     {
-
+        [SerializeField]
+        private Stage stage;    
         [SerializeField]
         float velocity;         //入力時の速度
         [SerializeField]
@@ -18,6 +19,12 @@ namespace block
         bool stopBlock;         //地面に触れた後数カウント後操作を不可能にするフラグ
         int hitCount;           //地面やブロックに当たっている時間
         public bool onBlock;           //ブロックがあるかどうか
+
+        private Renderer firstTile;
+        private Renderer lastTile;
+
+
+        
         // Use this for initialization
         void Start()
         {
@@ -26,6 +33,10 @@ namespace block
             hitFloor = false;
             hitCount = 0;
             onBlock = true;
+
+            firstTile = GameObject.FindGameObjectWithTag("First Tile").GetComponent<Renderer>();
+            lastTile = GameObject.FindGameObjectWithTag("Last Tile").GetComponent<Renderer>();
+
         }
 
         // Update is called once per frame
@@ -36,7 +47,6 @@ namespace block
             if (hitFloor)
                 StopMove();
 
-            Debug.Log(time);
             FallBlock();
             MoveBlock();
 
@@ -76,7 +86,7 @@ namespace block
                 if (hitFloor) time = 0.0f;
             }
 
-            
+            Clamp();
         }
 
         private void FallBlock()
@@ -103,5 +113,20 @@ namespace block
             Debug.Log(coll.gameObject.ToString());
             hitFloor = true;
         }
+
+        public void Clamp()    //ブロックの移動範囲の制限
+        {
+            Vector3 tmpPos = transform.position;
+
+            Vector3 min = firstTile.transform.position;
+            Vector3 max = lastTile.transform.position;
+
+
+            tmpPos.x = Mathf.Clamp(tmpPos.x, min.x, max.x);
+            tmpPos.z = Mathf.Clamp(tmpPos.z, min.z, max.z);
+
+            transform.position = tmpPos;
+        }
+
     }
 }

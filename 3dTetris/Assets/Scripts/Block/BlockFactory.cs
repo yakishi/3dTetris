@@ -20,7 +20,7 @@ namespace block
         // Use this for initialization
         void Start()
         {
-        
+
             tmpPosX = Mathf.Floor(stage.getStageWidth / 2);
             tmpPosZ = Mathf.Floor(stage.getStageDepth / 2);
             insPos = new Vector3(tmpPosX, stage.getStageHeight - 0.5f, tmpPosZ);
@@ -35,9 +35,9 @@ namespace block
         // Update is called once per frame
         void Update()
         {
+
             if (block[activeNum].onBlock == false)
             { 
-                //block[activeNum].GetComponent<Block>().enabled = false;
                 block[activeNum + 1] = (Block)Instantiate(blockPrefab, insPos, Quaternion.identity);
                 activeNum += 1;
             }
