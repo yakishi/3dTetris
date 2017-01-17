@@ -1,22 +1,25 @@
-﻿using UnityEngine;
+﻿#pragma warning disable 0649
+using UnityEngine;
 using System.Collections;
 
 public class Floor : MonoBehaviour {
 
     protected int sceneTask;
     [SerializeField]
+    private Stage stage;
+
     private int blockWQuantity;    //x座標のマス目の数
     private int blockDQuantity;    //z座標のマス目の数
 
     public int getWQuantity { get { return blockWQuantity; } }
     public int getDQuantity { get { return blockDQuantity; } }
-
-    
+   
 
     // Use this for initialization
     void Start () {
 
-        blockDQuantity = blockWQuantity;
+        blockWQuantity = (int)stage.getStageWidth;
+        blockDQuantity = (int)stage.getStageDepth;
         
 
         //配置するプレハブの読み込み

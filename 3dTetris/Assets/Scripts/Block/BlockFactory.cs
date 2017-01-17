@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#pragma warning disable 0649
+using UnityEngine;
 using System.Collections;
 
 namespace block
@@ -6,6 +7,7 @@ namespace block
     public class BlockFactory : MonoBehaviour
     {
         public Block blockPrefab;
+
         [SerializeField]
         private Stage stage;
 
@@ -36,11 +38,14 @@ namespace block
         void Update()
         {
 
-            if (block[activeNum].onBlock == false)
+            if (block[activeNum].stopBlock == true)
             { 
+
                 block[activeNum + 1] = (Block)Instantiate(blockPrefab, insPos, Quaternion.identity);
                 activeNum += 1;
+
             }
+
           
         }
 

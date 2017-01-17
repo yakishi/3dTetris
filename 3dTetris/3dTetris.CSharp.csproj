@@ -68,9 +68,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Block\Block.cs" />
     <Compile Include="Assets\Scripts\Block\BlockFactory.cs" />
-    <Compile Include="Assets\Scripts\Floor.cs" />
+    <Compile Include="Assets\Scripts\Gizmo.cs" />
+    <Compile Include="Assets\Scripts\MainCamera.cs" />
     <Compile Include="Assets\Scripts\MyInput.cs" />
-    <Compile Include="Assets\Scripts\Stage.cs" />
+    <Compile Include="Assets\Scripts\Stage\Floor.cs" />
+    <Compile Include="Assets\Scripts\Stage\Stage.cs" />
+    <Compile Include="Assets\Scripts\Stage\Trout.cs" />
+    <Compile Include="Assets\Scripts\Stage\TroutManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
